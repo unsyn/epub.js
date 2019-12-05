@@ -221,7 +221,7 @@ class Book {
 	open(input, what) {
 		var opening;
 		var type = what || this.determineType(input);
-
+		console.error("Open book: type="+type);
 		if (type === INPUT_TYPE.BINARY) {
 			this.archived = true;
 			this.url = new Url("/", "");
@@ -385,6 +385,7 @@ class Book {
 	 * @return {string}  binary | directory | epub | opf
 	 */
 	determineType(input) {
+		console.debug("Determine Type, input=",input);
 		var url;
 		var path;
 		var extension;
