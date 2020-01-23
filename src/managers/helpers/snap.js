@@ -200,8 +200,13 @@ class Snap {
 		this.endTime = undefined;
 	}
 
-	wasSwiped() {
+	_getSnapWidth() {
 		let snapWidth = this.layout.pageWidth * this.layout.divisor;
+		return snapWidth;
+	}
+
+	wasSwiped() {
+		let snapWidth = this._getSnapWidth() / 2;
 		let distance = (this.endTouchX - this.startTouchX);
 		let absolute = Math.abs(distance);
 		let time = this.endTime - this.startTime;
@@ -223,13 +228,13 @@ class Snap {
 
 	needsSnap() {
 		let left = this.scrollLeft;
-		let snapWidth = this.layout.pageWidth * this.layout.divisor;
+		let snapWidth = this._getSnapWidth()
 		return (left % snapWidth) !== 0;
 	}
 
 	snap(howMany=0) {
 		let left = this.scrollLeft;
-		let snapWidth = this.layout.pageWidth * this.layout.divisor;
+		let snapWidth = this._getSnapWidth()
 		let snapTo = Math.round(left / snapWidth) * snapWidth;
 
 		if (howMany) {
