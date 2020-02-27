@@ -80,7 +80,7 @@ class ContinuousViewManager extends DefaultViewManager {
 			distY = offset.top;
 			offsetY = offset.top+this.settings.offsetDelta;
 		} else {
-			distX = Math.floor(offset.left / this.layout.delta) * this.layout.delta;
+			distX = Math.round(offset.left / this.layout.delta) * this.layout.delta;
 			offsetX = distX+this.settings.offsetDelta;
 		}
 
